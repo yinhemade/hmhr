@@ -18,12 +18,17 @@ const mutations = {
   },
   SET_TOKEN: (state, token) => {
     state.token = token
+    setToken(token)
   },
   SET_NAME: (state, name) => {
     state.name = name
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  REMOVE_TOKEN: (state, token) => {
+    state.token = ''
+    removeToken()
   }
 }
 
