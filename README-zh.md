@@ -1,5 +1,40 @@
 # vue-admin-template
 
+常用粉色 rgba(255, 192, 203, 0.7);
+        rgba(247, 194, 194, 0.5);
+
+侧边栏的背景色
+    background: -webkit-linear-gradient(bottom, #f8463d, #d942a4);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 > 这是一个极简的 vue admin 管理后台。它只包含了 Element UI & axios & iconfont & permission control & lint，这些搭建后台必要的东西。
 
 [线上地址](http://panjiachen.github.io/vue-admin-template)

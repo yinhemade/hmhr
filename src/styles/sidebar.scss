@@ -10,7 +10,8 @@
   .sidebar-container {
     transition: width 0.28s;
     width: $sideBarWidth !important;
-    background-color: $menuBg;
+    // background-color: $menuBg;
+    background: -webkit-linear-gradient(bottom, #f8463d, #d942a4);
     height: 100%;
     position: fixed;
     font-size: 0px;
@@ -27,6 +28,7 @@
 
     .scrollbar-wrapper {
       overflow-x: hidden !important;
+      background: url('~@/assets/common/薇薇修女2.png') round no-repeat;
     }
 
     .el-scrollbar__bar.is-vertical {
@@ -66,6 +68,31 @@
       border: none;
       height: 100%;
       width: 100% !important;
+      a{
+        li{
+          .svg-icon{
+            // color: rgb(255, 192, 203);
+            color: #fff;
+            font-size: 18px;
+            vertical-align: middle;
+            .icon{
+              color:#fff;
+            }
+          }
+          span{
+            // color: rgb(255, 192, 203);
+            color: #fff;
+          }
+          &:hover{
+            .svg-icon{
+              color: #43a7fe
+            }
+            span{
+              color: #43a7fe;
+            }
+          }
+        }
+      }
     }
 
     // menu hover

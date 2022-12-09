@@ -64,7 +64,7 @@
 
 <script>
 import { validMobile } from '@/utils/validate'
-import { requestOfLogin, requestOfUserMessage } from '@/api'
+import { requestOfUserMessage } from '@/api'
 
 export default {
   name: 'Login',
@@ -113,9 +113,9 @@ export default {
       this.$refs.loginForm.validate(async valid => {
         if (valid) {
           try {
-            const res = await requestOfLogin(this.loginForm)
-            this.$store.commit('user/SET_TOKEN', res.data)
-            console.log(res.data)
+            const pro = await this.$store.dispatch('user/login', this.loginForm)
+            this.$message.success(pro.message)
+            this.$router.replace('/')
           } catch (e) {
             console.dir(e)
           }
