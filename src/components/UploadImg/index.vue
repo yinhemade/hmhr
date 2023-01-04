@@ -51,8 +51,8 @@ export default {
       this.showProgress = true
       console.log(fileObj.file, this)
       cos.uploadFile({
-        Bucket: 'linwyuanhmrz-1316392093', /* 填写自己的bucket，必须字段 */
-        Region: 'ap-guangzhou', /* 存储桶所在地域，必须字段 */
+        Bucket: '', /* 填写自己的bucket，必须字段 */
+        Region: '', /* 存储桶所在地域，必须字段 */
         Key: fileObj.file.name, /* 存储在桶里的对象键（例如:1.jpg，a/b/test.txt，图片.jpg）支持中文，必须字段 */
         Body: fileObj.file, // 上传文件对象
         SliceSize: 1024 * 1024 * 2, /* 触发分块上传的阈值，超过5MB使用分块上传，小于5MB使用简单上传。可自行设置，非必须 */
