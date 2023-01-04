@@ -4,8 +4,12 @@
         rgba(247, 194, 194, 0.5);
 
 侧边栏的背景色
-    background: -webkit-linear-gradient(bottom, #f8463d, #d942a4);
+   深
+    background: -webkit-linear-gradient(bottom, #f8463d, #d942a4);  
+   浅
+    background: -webkit-linear-gradient(bottom, #521916, #ef9ad2);
 
+   
 
 
 

@@ -50,7 +50,6 @@
         class="login_btn"
         @click.native.prevent="handleLogin"
       >登录</el-button>
-      <button @click.prevent="haveATry">try</button>
 
       <div class="tips">
         <span style="margin-right:20px;">mobile: 138-0000-0002</span>
@@ -64,7 +63,6 @@
 
 <script>
 import { validMobile } from '@/utils/validate'
-import { requestOfUserMessage } from '@/api'
 
 export default {
   name: 'Login',
@@ -115,7 +113,7 @@ export default {
           try {
             const pro = await this.$store.dispatch('user/login', this.loginForm)
             this.$message.success(pro.message)
-            this.$router.replace('/')
+            this.$router.replace(this.$route.query.redirect || '/')
           } catch (e) {
             console.dir(e)
           }
@@ -124,10 +122,6 @@ export default {
           return false
         }
       })
-    },
-    async haveATry() {
-      const res = await requestOfUserMessage()
-      console.log(res.data)
     }
   }
 }

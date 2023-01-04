@@ -1,3 +1,4 @@
+import router from '@/router'
 import store from '@/store'
 import axios from 'axios'
 import { Message } from 'element-ui'
@@ -34,7 +35,13 @@ service.interceptors.response.use(
     }
   },
   error => {
+    // 提示错误信息
     Message.error((error.response && error.response.data && error.response.data.message) || error.message)
+    // 具体分析
+    if (error?.response?.data?.code === 10002) {
+      store.dispatch('user/logout')
+      router.replace(`/login?redirect=${router.currentRoute.fullPath}`)
+    }
     return Promise.reject(error)
   }
 )

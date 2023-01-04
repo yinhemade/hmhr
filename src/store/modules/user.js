@@ -1,10 +1,10 @@
-import { requestOfLogin } from '@/api/user'
+import { requestOfLogin, requestOfUserMessage, requestOfBaseInfo } from '@/api'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 
 const getDefaultState = () => {
   return {
     token: getToken(),
-    name: '',
+    userInfo: {},
     avatar: ''
   }
 }
@@ -19,15 +19,20 @@ const mutations = {
     state.token = token
     setToken(token)
   },
-  SET_NAME: (state, name) => {
-    state.name = name
-  },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
   },
-  REMOVE_TOKEN: (state, token) => {
+  REMOVE_TOKEN: (state) => {
     state.token = ''
     removeToken()
+  },
+  // 获取用户信息
+  SET_USER_INFO: (state, userInfo) => {
+    state.userInfo = userInfo
+  },
+  // 删除用户信息
+  REMOVE_USER_INFO: (state) => {
+    state.userInfo = {}
   }
 }
 
@@ -40,10 +45,20 @@ const actions = {
   },
 
   // get user info
-  getInfo({ commit, state }) {},
+  async getUserInfo({ commit }) {
+    const { data: userObj } = await requestOfUserMessage()
+    const { data: photoObj } = await requestOfBaseInfo(userObj.userId)
+    commit('SET_USER_INFO', { ...userObj, ...photoObj })
+    return userObj
+  },
 
-  // user logout
-  logout({ commit, state }) {},
+  // 登出：1.token过期、2.用户主动登出
+  logout({ commit }) {
+    // 删除本地
+    commit('REMOVE_TOKEN')
+    // 删除vuex的数据
+    commit('REMOVE_USER_INFO')
+  },
 
   // remove token
   resetToken({ commit }) {

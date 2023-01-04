@@ -12,7 +12,7 @@ export function requestOfLogin(data) {
   })
 }
 /**
- * 用token获取用户信息
+ * 用token获取用户信息, token已经加在请求头里
  * @returns 返回Promise对象
  */
 export function requestOfUserMessage() {
@@ -20,4 +20,12 @@ export function requestOfUserMessage() {
     url: '/sys/profile',
     method: 'POST'
   })
+}
+/**
+ * 用用户登录信息的id，获取用户基本信息
+ * @param {*} id 用户的userId
+ * @returns 返回Promise对象
+ */
+export function requestOfBaseInfo(id) {
+  return request.get(`/sys/user/${id}`)
 }

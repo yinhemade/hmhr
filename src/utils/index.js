@@ -115,3 +115,51 @@ export function param2Obj(url) {
   })
   return obj
 }
+/**
+ * 把扁平结构的部门对象  转化为  层级结构
+ * @param {*} souceData 元数据
+ * @returns 具有层级结构的数据
+ */
+export function transTree(souceData) {
+  const targetData = []
+  // 树形结构生成
+  // 核心思路：
+  // 1. 先遍历原数组 以原数组中的每一项的id作为对象的key, 每一项本身作为对象的value形成一个对象结构(map)
+  // 2. 遍历原数组 使用数组中的每一项的pid 去第一步形成的map结构去匹配key(id) 如果匹配上
+  // 就把当前项放入找到节点的children属性中去  如果无法完成匹配 代表当前项就是最根上的父节点
+  // 那就把当前项直接放到最终产出的targetData中去
+  const map = {}
+  souceData.forEach(item => {
+    map[item.id] = item
+    item.children = []
+  })
+  // 通过pid去匹配id
+  souceData.forEach(item => {
+    if (map[item.pid]) {
+      // 匹配上
+      map[item.pid].children.push(item)
+    } else {
+      // 没有匹配上
+      targetData.push(item)
+    }
+  })
+  // 返回的是处理之后的数组
+  return targetData
+}
+/**
+ * 将Excel的时间转化为北京时间
+ * @param {*} numb 从1900开始的伦敦时间戳
+ * @param {*} format 格式的分隔符
+ * @returns 一个北京时间的字符串 eg:'2023/1/1'
+ */
+export function formatExcelDate(numb, format = '/') {
+  const time = new Date((numb - 25567) * 24 * 3600000 - 5 * 60 * 1000 - 43 * 1000 - 24 * 3600000)
+  time.setYear(time.getFullYear())
+  const year = time.getFullYear() + ''
+  const month = time.getMonth() + 1 + ''
+  const date = time.getDate() + ''
+  if (format && format.length === 1) {
+    return year + format + month + format + date
+  }
+  return year + (month < 10 ? '0' + month : month) + (date < 10 ? '0' + date : date)
+}

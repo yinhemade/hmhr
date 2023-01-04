@@ -5,13 +5,14 @@
     transition: margin-left .28s;
     margin-left: $sideBarWidth;
     position: relative;
+    background-color: #f0f2f5;
   }
 
   .sidebar-container {
     transition: width 0.28s;
     width: $sideBarWidth !important;
     // background-color: $menuBg;
-    background: -webkit-linear-gradient(bottom, #f8463d, #d942a4);
+    background: -webkit-linear-gradient(bottom, #521916, #ef9ad2);
     height: 100%;
     position: fixed;
     font-size: 0px;
@@ -93,6 +94,16 @@
           }
         }
       }
+      .is-active {
+        background-color: $menuText !important;
+        span {
+          color: $menuActiveText !important;
+        }
+        .svg-icon{
+          color: $menuActiveText !important;
+        }
+      }
+
     }
 
     // menu hover

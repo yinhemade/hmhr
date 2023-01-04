@@ -1,1 +1,5 @@
-export * from '@/api/user'
+export * from '@/api/components/user'
+export * from '@/api/components/department'
+export * from '@/api/components/setting'
+export * from '@/api/components/employees'
+export * from '@/api/components/permissions'
